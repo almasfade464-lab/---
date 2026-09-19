@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "authProvider": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "lastLoginAt": { "type": "string" },
+        "preferences": { "type": "object" },
+        "stats": { "type": "object" }
+      },
+      "required": ["id", "username", "displayName"]
+    },
+    "Note": {
+      "title": "Educational Note",
+      "description": "Personal educational note with rich markdown, categories, tasks, attached diagrams and AI assistance",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string", "maxLength": 300 },
+        "content": { "type": "string", "maxLength": 50000 },
+        "category": { "type": "string", "maxLength": 100 },
+        "isPinned": { "type": "boolean" },
+        "isFavorite": { "type": "boolean" },
+        "tags": { "type": "array" },
+        "attachedImageUrl": { "type": "string" },
+        "attachedDiagramId": { "type": "string" },
+        "attachedSource": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "content", "category", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Individual user document containing user profile and preferences"
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": "Note",
+      "description": "Personal notes subcollection strictly owned and isolated by the authenticated user"
+    }
+  }
+}

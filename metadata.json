@@ -1,0 +1,6 @@
+{
+  "name": "إديو-جرافيك | EduGraphic",
+  "description": "منصة تعليمية ذكية لالتقاط الشاشة وتحليل الصور بأي أبعاد ودقة، وتحويلها لشروحات تفاعلية متعددة اللغات ومحادثة بصرية مستمرة.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

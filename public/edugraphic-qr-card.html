@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بطاقة إديو-جرافيك | EduGraphic QR Card</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-600: #475569;
+      --slate-100: #f1f5f9;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Arabic', sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: var(--slate-900);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      max-width: 440px;
+      width: 100%;
+      padding: 32px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      padding: 4px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: var(--slate-600);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .qr-container {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 20px;
+      padding: 16px;
+      display: inline-block;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .qr-image {
+      width: 240px;
+      height: 240px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+    }
+    .scan-hint {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate-800);
+      margin-bottom: 16px;
+    }
+    .url-box {
+      background: var(--slate-100);
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 11px;
+      color: var(--slate-600);
+      word-break: break-all;
+      font-family: monospace;
+      direction: ltr;
+      margin-bottom: 24px;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    .btn-secondary {
+      background: var(--slate-100);
+      color: var(--slate-800);
+      border: 1px solid #e2e8f0;
+    }
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .card {
+        border: none;
+        box-shadow: none;
+        max-width: 100%;
+        padding: 20px;
+      }
+      .actions {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="badge">EduGraphic • المنصة التعليمية الذكية</div>
+    <h1 class="title">إديو-جرافيك | EduGraphic</h1>
+    <p class="subtitle">منصة تفاعلية مدعومة بالذكاء الاصطناعي لفهم الرسوم التعليمية والمخططات العلمية بدقة فائقة</p>
+
+    <div class="qr-container">
+      <img src="/edugraphic-qr.png" alt="EduGraphic QR Code" class="qr-image" />
+    </div>
+
+    <div class="scan-hint">
+      📷 امسح الرمز بكاميرا الهاتف لتثبيت البرنامج والتعرف التلقائي على هاتفك
+      <br>
+      <span style="font-size: 11px; color: var(--slate-600); font-weight: normal;">Scan to detect phone (iPhone / Android) & install the app</span>
+    </div>
+
+    <div class="url-box" id="platform-url">
+      https://ais-pre-cgsiemmhjthfjgmqrlyhjl-384971865971.europe-west1.run.app/?scan=qr&install=1
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" onclick="window.print()">🖨️ طباعة / حفظ كـ PDF</button>
+      <a class="btn btn-secondary" href="/edugraphic-qr.png" download="edugraphic-qr.png">📥 تنزيل صورة QR</a>
+    </div>
+  </div>
+
+  <script>
+    // Update link if opened on a real domain
+    if (window.location && window.location.origin && window.location.origin.startsWith('http') && !window.location.origin.includes('localhost')) {
+      const url = window.location.origin + '/?scan=qr&install=1';
+      const el = document.getElementById('platform-url');
+      if (el) el.textContent = url;
+    }
+  </script>
+</body>
+</html>

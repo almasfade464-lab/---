@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.pin-pulse {
+  animation: pulse-ring 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.animate-flow-dash {
+  animation: flow-dash 1s linear infinite;
+}
+
+@keyframes eq-bounce {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 16px;
+  }
+}
+
+.animate-eq-1 {
+  animation: eq-bounce 0.8s ease-in-out infinite;
+}
+.animate-eq-2 {
+  animation: eq-bounce 0.8s ease-in-out 0.2s infinite;
+}
+.animate-eq-3 {
+  animation: eq-bounce 0.8s ease-in-out 0.4s infinite;
+}
+
+@keyframes scanner-sweep {
+  0% {
+    top: 0%;
+    opacity: 0.75;
+  }
+  50% {
+    top: 96%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.75;
+  }
+}
+
+.animate-scanner-sweep {
+  animation: scanner-sweep 2.4s ease-in-out infinite;
+}
+
+@keyframes cv-radar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-cv-radar {
+  animation: cv-radar 4s linear infinite;
+}
+
+/* ============================================================ */
+/* 🔤 Font Size Scaling (صغير / متوسط / كبير) */
+/* ============================================================ */
+html.font-size-small {
+  font-size: 13.5px;
+}
+html.font-size-medium {
+  font-size: 16px;
+}
+html.font-size-large {
+  font-size: 18.5px;
+}
+
+/* ============================================================ */
+/* ✨ Motion Effects Disabling (إيقاف الحركات) */
+/* ============================================================ */
+html.disable-motion *,
+html.disable-motion *::before,
+html.disable-motion *::after {
+  animation-duration: 0.001s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001s !important;
+  scroll-behavior: auto !important;
+}
+
+/* ============================================================ */
+/* 👁️ High Contrast (التباين العالي) */
+/* ============================================================ */
+html.high-contrast {
+  filter: contrast(1.15);
+}
+
+/* Light mode high contrast */
+html.high-contrast:not(.dark) {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+html.high-contrast:not(.dark) .border,
+html.high-contrast:not(.dark) button,
+html.high-contrast:not(.dark) input,
+html.high-contrast:not(.dark) select {
+  border-color: #0f172a !important;
+  border-width: 2px !important;
+}
+html.high-contrast:not(.dark) .text-slate-400,
+html.high-contrast:not(.dark) .text-slate-500 {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+/* Dark mode high contrast */
+html.high-contrast.dark {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+html.high-contrast.dark .border,
+html.high-contrast.dark button,
+html.high-contrast.dark input,
+html.high-contrast.dark select {
+  border-color: #38bdf8 !important;
+  border-width: 2px !important;
+}
+html.high-contrast.dark .text-slate-400,
+html.high-contrast.dark .text-slate-500 {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+}
+html.high-contrast.dark .bg-\[\#0B1528\],
+html.high-contrast.dark .bg-\[\#101C33\],
+html.high-contrast.dark .bg-\[\#13233E\] {
+  background-color: #050505 !important;
+}
+
+/* ============================================================ */
+/* 🖼️ Render Quality (جودة العرض) */
+/* ============================================================ */
+.quality-low img,
+img.quality-low,
+canvas.quality-low {
+  image-rendering: pixelated;
+  filter: contrast(0.95);
+}
+
+.quality-medium img,
+img.quality-medium,
+canvas.quality-medium {
+  image-rendering: auto;
+}
+
+.quality-high img,
+img.quality-high,
+canvas.quality-high {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: contrast(1.03) saturate(1.02);
+}
+

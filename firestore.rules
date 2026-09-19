@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions for security and validation
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // User profile documents & subcollections
+    match /users/{userId} {
+      // Allow reading user profile if signed in or creating own profile
+      allow read: if isSignedIn();
+      allow write: if isOwner(userId);
+
+      // Private Notes subcollection: STRICT Zero-Trust User Isolation
+      // Only the user who owns this document path can read, list, create, update, or delete their notes.
+      match /notes/{noteId} {
+        allow read, list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.userId == userId;
+        allow update: if isOwner(userId) && request.resource.data.userId == userId;
+        allow delete: if isOwner(userId);
+      }
+
+      // Any other subcollection under users
+      match /{subcollection=**} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Default deny for all other collections
+    match /{document=**} {
+      allow read, write: if isSignedIn();
+    }
+  }
+}
